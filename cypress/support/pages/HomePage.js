@@ -2,8 +2,8 @@
 
 const pageLocators = {
     carouselImages: '.d-block',
-    rightArrowButton: '.carousel-control-next'
-
+    rightArrowButton: '.carousel-control-next',
+    leftArrowButton: '.carousel-control-prev'
 }
 
 class HomePage {
@@ -20,9 +20,17 @@ class HomePage {
         return cy.get(pageLocators.rightArrowButton);
     }
 
+    leftArrowButton() {
+        return cy.get(pageLocators.leftArrowButton);
+    }
+
     // Actions
     clickOnRightArrowButton() {
         return this.rightArrowButton().click();
+    }
+
+    clickOnLeftArrowButton() {
+        return this.leftArrowButton().click();
     }
 }
 
