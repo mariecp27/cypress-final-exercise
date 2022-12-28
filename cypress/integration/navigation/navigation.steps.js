@@ -1,7 +1,9 @@
 /// <reference types="cypress" />
 
-import { When, Then } from "cypress-cucumber-preprocessor/steps";
-import HomePage from "../../support/pages/HomePage";
+import { When, Then } from 'cypress-cucumber-preprocessor/steps';
+import HomePage from '../../support/pages/HomePage';
+import * as genericActions from '../../support/generic/genericActions';
+import * as genericAssertions from '../../support/generic/genericAssertions'
 
 // When
 When('I click on the Home option of the navigation bar', () => {
@@ -30,31 +32,25 @@ When('I click on the Sign up option of the navigation bar', () => {
 
 // Then
 Then('I should be taken to the Home page', () => {
-    cy.location().then((loc) => {
-        let href = loc.href;
-        cy.wrap(href).should('contain', 'index.html');
-    })
+    genericAssertions.toContainText(genericActions.getWindownHref(), 'index.html');
 });
 
 Then('The Contact modal should be displayed', () => {
-    HomePage.contactModalTitle().should('contain', 'New message');
+    genericAssertions.toContainText(HomePage.contactModalTitle(), 'New message');
 });
 
 Then('The About us modal should be displayed', () => {
-    HomePage.aboutUsModalTitle().should('contain', 'About us');
+    genericAssertions.toContainText(HomePage.aboutUsModalTitle(), 'About us');
 });
 
 Then('I should be taken to the Cart page', () => {
-    cy.location().then((loc) => {
-        let href = loc.href;
-        cy.wrap(href).should('contain', 'cart.html');
-    })
+    genericAssertions.toContainText(genericActions.getWindownHref(), 'cart.html');
 });
 
 Then('The Log in modal should be displayed', () => {
-    HomePage.loginModalTitle().should('contain', 'Log in');
+    genericAssertions.toContainText(HomePage.loginModalTitle(), 'Log in');
 });
 
 Then('The Sign up modal should be displayed', () => {
-    HomePage.signUpModalTitle().should('contain', 'Sign up');
+    genericAssertions.toContainText(HomePage.signUpModalTitle(), 'Sign up');
 });
