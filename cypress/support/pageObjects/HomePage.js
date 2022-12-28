@@ -9,6 +9,7 @@ const pageLocators = {
     aboutUsModalTitle: '#videoModalLabel',
     loginModalTitle: '#logInModalLabel',
     signUpModalTitle: '#signInModalLabel',
+    categories: '.list-group-item[href="#"]'
 }
 
 class HomePage {
@@ -49,6 +50,10 @@ class HomePage {
         return cy.get(pageLocators.signUpModalTitle);
     }
 
+    category(index) {
+        return cy.get(pageLocators.categories).eq(index);
+    }
+
     // Actions
     clickOnRightArrowButton() {
         return this.rightArrowButton().click();
@@ -60,6 +65,25 @@ class HomePage {
 
     clickOnNavLink(text) {
         return this.navLinks(text).click();
+    }
+
+    clickOnCategoty(index) {
+        cy.fixture('services').as('productsUrl');
+        cy.get("@productsUrl").then(productsUrl => {
+            cy.intercept('POST', productsUrl.categories).as('productsResponse');
+        });
+        return this.category(index).click();
+    }
+
+    getCategoriesResponse() {
+        let desiredProducts = [];
+        cy.wait('@productsResponse')
+            .then( response => {
+                desiredProducts =  response.response.body.Items;
+            })
+            .then( () => {
+                cy.wrap(desiredProducts).as('desiredProducts');
+            });
     }
 }
 

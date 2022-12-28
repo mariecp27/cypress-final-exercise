@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
 import { When, Then } from 'cypress-cucumber-preprocessor/steps';
-import HomePage from '../../support/pages/HomePage';
+import HomePage from '../../support/pageObjects/HomePage';
 import * as genericActions from '../../support/generic/genericActions';
-import * as genericAssertions from '../../support/generic/genericAssertions'
+import * as genericAssertions from '../../support/generic/genericAssertions';
 
 // When
 When('I click on the Home option of the navigation bar', () => {

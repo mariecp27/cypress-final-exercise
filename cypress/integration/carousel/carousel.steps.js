@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
-import * as genericAssertions from '../../support/generic/genericAssertions'
-import HomePage from '../../support/pages/HomePage';
+import HomePage from '../../support/pageObjects/HomePage';
+import * as genericAssertions from '../../support/generic/genericAssertions';
 
 // Given
 Given('The third imagen in the carousel is displayed', () => {
