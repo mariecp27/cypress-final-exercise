@@ -18,3 +18,7 @@ Feature: Actions with products
     Scenario: Verify monitors
         When I click on monitors category
         Then Only monitors should be gotten through the API response
+
+    Scenario: Product selection
+        When I click on a random product
+        Then I should be taken to the product detail

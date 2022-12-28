@@ -9,7 +9,8 @@ const pageLocators = {
     aboutUsModalTitle: '#videoModalLabel',
     loginModalTitle: '#logInModalLabel',
     signUpModalTitle: '#signInModalLabel',
-    categories: '.list-group-item[href="#"]'
+    categories: '.list-group-item[href="#"]',
+    productsTitle: '.hrefch'
 }
 
 class HomePage {
@@ -54,6 +55,14 @@ class HomePage {
         return cy.get(pageLocators.categories).eq(index);
     }
 
+    productsTitle() {
+        return cy.get(pageLocators.productsTitle);
+    }
+
+    productTitle(index) {
+        return cy.get(pageLocators.productsTitle).eq(index);
+    }
+
     // Actions
     clickOnRightArrowButton() {
         return this.rightArrowButton().click();
@@ -67,7 +76,7 @@ class HomePage {
         return this.navLinks(text).click();
     }
 
-    clickOnCategoty(index) {
+    clickOnCategory(index) {
         cy.fixture('services').as('productsUrl');
         cy.get("@productsUrl").then(productsUrl => {
             cy.intercept('POST', productsUrl.categories).as('productsResponse');
@@ -84,6 +93,23 @@ class HomePage {
             .then( () => {
                 cy.wrap(desiredProducts).as('desiredProducts');
             });
+    }
+
+    getProductsAmount() {
+        this.productsTitle()
+            .then( products => {
+                return products.length;
+            }).then(productsAmount => {
+                cy.wrap(productsAmount).as('productsAmount');
+            });
+    }
+
+    clickOnproductTitle(index) {
+        return this.productTitle(index).click();
+    }
+
+    getProductTitle(index) {
+        this.productTitle(index).invoke('text').as('productTitle');
     }
 }
 
