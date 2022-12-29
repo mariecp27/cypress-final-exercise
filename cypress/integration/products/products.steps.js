@@ -17,11 +17,11 @@ Given('I am in a random product detail page', () => {
 });
 
 Given('I am in the shopping cart page', () => {
+    CartPage.addProductToShoppingCart();
     HomePage.clickOnNavLink('Cart');
 });
 
 And('I have a random product in my shopping cart', () => {
-    CartPage.addProductToShoppingCart();
     cy.get('@boughtProductTitle').then( boughtProductTitle => {
         genericAssertions.toContainText(CartPage.getProductTitle(), boughtProductTitle);
     });
@@ -55,6 +55,10 @@ When('I click on Add to cart button', () => {
 
 When('I click on Delete button', () => {
     CartPage.clickODeleteButton();
+});
+
+When('I click on Place Order button', () => {
+    CartPage.clickOnPlaceOrderButton();
 });
 
 // Then
@@ -107,5 +111,18 @@ Then('The product should be removed from my shopping cart', () => {
     CartPage.getProductsInShoppingCart();
     cy.get('@productsInShoppingCartAmount').then( (productsInShoppingCartAmount) => {
         genericAssertions.toBeEqual(cy.wrap(productsInShoppingCartAmount), 0);
+    });
+});
+
+Then('I should be able to finish the purchase procedure', () => {
+    cy.fixture('formInformation').then( formInformation => {
+        CartPage.typeOnNameInput(formInformation.name);
+        CartPage.typeOnCountryInput(formInformation.country);
+        CartPage.typeOnCityInput(formInformation.city);
+        CartPage.typeOnCreditCardInput(formInformation.card);
+        CartPage.typeOnMonthInput(formInformation.month);
+        CartPage.typeOYearInput(formInformation.year);
+        CartPage.clickOnPurchaseButton();
+        genericAssertions.toContainText(CartPage.getConfirmationModalTitleText(), 'Thank you for your purchase!');
     });
 });

@@ -33,3 +33,9 @@ Feature: Actions with products
         And I have a random product in my shopping cart
         When I click on Delete button
         Then The product should be removed from my shopping cart
+
+    Scenario: Buying product in shopping cart
+        Given I am in the shopping cart page
+        And I have a random product in my shopping cart
+        When I click on Place Order button
+        Then I should be able to finish the purchase procedure

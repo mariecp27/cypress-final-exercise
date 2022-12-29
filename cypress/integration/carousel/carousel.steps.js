@@ -33,7 +33,6 @@ Then('The first image of the carousel should be displayed', () => {
 
 Then('The displayed image should change to the first image in the carousel', () => {
     genericAssertions.toBeVisible(HomePage.carouselImage(0));
-
 });
 
 Then('The displayed image should change to the second image in the carousel', () => {
@@ -43,6 +42,3 @@ Then('The displayed image should change to the second image in the carousel', ()
 Then('The displayed image should change to the third image in the carousel', () => {
     genericAssertions.toBeVisible(HomePage.carouselImage(2));
 });
-
-
-
