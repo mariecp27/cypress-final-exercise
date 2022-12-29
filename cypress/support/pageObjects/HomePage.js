@@ -77,9 +77,9 @@ class HomePage {
     }
 
     clickOnCategory(index) {
-        cy.fixture('services').as('productsUrl');
-        cy.get("@productsUrl").then(productsUrl => {
-            cy.intercept('POST', productsUrl.categories).as('productsResponse');
+        cy.fixture('services').as('services');
+        cy.get("@services").then(services => {
+            cy.intercept('POST', services.categories).as('productsResponse');
         });
         return this.category(index).click();
     }

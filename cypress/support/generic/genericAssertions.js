@@ -15,3 +15,7 @@ export function toBeVisible(element) {
 export function toContainText(element, text) {
     return element.should('contain', text);
 }
+
+export function toBeEqual(element, text) {
+    return element.should('eq', text);
+}

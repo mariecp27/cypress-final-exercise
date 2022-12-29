@@ -22,3 +22,14 @@ Feature: Actions with products
     Scenario: Product selection
         When I click on a random product
         Then I should be taken to the product detail
+
+    Scenario: Adding product to shopping cart
+        Given I am in a random product detail page
+        When I click on Add to cart button
+        Then The product should be added to my shopping cart
+@focus 
+    Scenario: Deleting product to shopping cart
+        Given I am in the shopping cart page
+        And I have a random product in my shopping cart
+        When I click on Delete button
+        Then The product should be removed from my shopping cart
