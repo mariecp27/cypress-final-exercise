@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run",
+    "open": "npx cypress open",
+    "run": "npx cypress run",
     "allure": "npx cypress run --env allure=true",
     "allure:results": "allure serve allure-results/"
   },
