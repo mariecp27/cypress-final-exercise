@@ -1,0 +1,7 @@
+{
+  "allProducts": "https://api.demoblaze.com/entries",
+  "categories": "https://api.demoblaze.com/bycat",
+  "addProductToShoppingCart": "https://api.demoblaze.com/addtocart",
+  "shoppingCart": "https://api.demoblaze.com/view",
+  "shoppingCartView": "https://api.demoblaze.com/viewcart"
+}
