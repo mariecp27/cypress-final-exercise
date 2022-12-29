@@ -54,7 +54,7 @@ When('I click on Add to cart button', () => {
 });
 
 When('I click on Delete button', () => {
-
+    CartPage.clickODeleteButton();
 });
 
 // Then
@@ -92,22 +92,20 @@ Then('I should be taken to the product detail', () => {
 });
 
 Then('The product should be added to my shopping cart', () => {
-    //cy.on('window:alert', () => true);
     ProductPage.saveProductTitle();
     ProductPage.getAddToCartResponse();
     cy.get('@status').then( (actualStatus) => {
         genericAssertions.toBeEqual(cy.wrap(actualStatus), 200);
     });
-    cy.intercept('POST', 'https://api.demoblaze.com/view').as('aja');
     ProductPage.clickOnCartLink();
     cy.get('@productTitleInDetail').then( productTitleInDetail => {
         genericAssertions.toContainText(CartPage.getProductTitle(), productTitleInDetail);
     });
-    cy.wait('@aja', {timeout: 60000}).then(response => {
-        console.log(response);
-    })
 });
 
 Then('The product should be removed from my shopping cart', () => {
-
+    CartPage.getProductsInShoppingCart();
+    cy.get('@productsInShoppingCartAmount').then( (productsInShoppingCartAmount) => {
+        genericAssertions.toBeEqual(cy.wrap(productsInShoppingCartAmount), 0);
+    });
 });
