@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "open": "npx cypress open",
-    "run": "npx cypress run",
+    "headless": "npx cypress run",
     "allure": "npx cypress run --env allure=true",
-    "allure:results": "allure serve allure-results/"
+    "allure:results": "allure serve allure-results/",
+    "tag": "npx cypress run -e TAGS=@regression"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "cypress-cucumber-preprocessor": "^4.3.1"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
+    "nonGlobalStepDefinitions": true,
+    "filterSpecs": true
   }
 }
